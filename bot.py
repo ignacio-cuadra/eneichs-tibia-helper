@@ -70,4 +70,6 @@ def get_client():
         print(f"✅ Bot conectado como {client.user}")
         asyncio.create_task(update_nicknames(client))
 
+    print("Get Client")
+
     return client
