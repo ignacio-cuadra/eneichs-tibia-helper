@@ -25,6 +25,21 @@ def retrieve_players():
   except Exception as e:
     print(f"⚠️ Error en el scraping: {e}")
     return []
-    
 
-retrieve_players()
+
+def retrive_players_from_tibia_api():
+  try:
+    response = requests.get("https://api.tibiadata.com/v4/world/" + WORLD)
+    response.raise_for_status()
+    data = response.json()
+    players = []
+    for player in data["world"]["online_players"]:
+      players.append({
+        "name": player["name"],
+        "level": player["level"],
+        "vocation": player["vocation"]
+      })
+    return players
+  except Exception as e:
+    print(f"⚠️ Error en la API: {e}")
+    return []

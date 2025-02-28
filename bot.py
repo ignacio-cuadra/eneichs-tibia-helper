@@ -1,7 +1,7 @@
 import re
 import discord
 import asyncio
-from scraper import retrieve_players
+from scraper import retrive_players_from_tibia_api
 
 
 def vocationInitials(vocation):
@@ -40,7 +40,7 @@ async def update_nicknames(client):
     await client.wait_until_ready()
     while not client.is_closed():
         try:
-            players = retrieve_players()
+            players = retrive_players_from_tibia_api()
             if not players:
                 print("⚠️ No se encontraron nombres en el scraping.")
                 await asyncio.sleep(60 * 10)
